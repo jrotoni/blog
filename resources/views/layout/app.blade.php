@@ -19,13 +19,18 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
       <li><a href="/articles">Articles</a></li>
+      <li><a href="/articles/create">Create Article</a></li>
       <!-- <li><a href="#">Page 2</a></li> -->
       <!-- <li><a href="#">Page 3</a></li> -->
     </ul>
   </div>
 </nav>
+<div class="container">
 <h1>@yield('title')</h1>
     @yield('main_content')
+    <div class="text-center">
     <footer>All Rights Reserved</footer>
+    </div>
+    </div>
 </body>
 </html>

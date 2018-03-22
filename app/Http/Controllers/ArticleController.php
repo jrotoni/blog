@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Article;
 
 class ArticleController extends Controller
@@ -39,11 +40,19 @@ class ArticleController extends Controller
     function create(Request $request) {
         // dd($request);
         // echo "$request->title $request->content";
+        $rules = array(
+            'title' => 'required',
+            'content' => 'required'
+        );
+        $this->validate($request, $rules);
+
         $new_article = new Article;
         $new_article->title = $request->title;
         $new_article->content = $request->content;
         // dd($new_article);
         $new_article->save();
+
+        Session::flash('create_article_success','Article successfully created');
 
         return redirect('/articles');
     }
@@ -52,6 +61,24 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $article->delete();
         return redirect('/articles');
+
+    }
+
+    function edit(Request $request, $id) {
+       $rules = array(
+            'title' => 'required',
+            'content' => 'required'
+        );
+        $this->validate($request, $rules);
+        // echo "hello from edit";
+        // dd($request);
+        $article = Article::find($id);
+        // dd($article);
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->save();
+
+        return redirect()->back();
 
     }
 }

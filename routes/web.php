@@ -31,3 +31,4 @@ Route::post('/articles/create', 'ArticleController@create');
 // Route::post('/articles/{id}/delete', 'ArticleController@delete');
 
 Route::delete('/articles/{id}/delete', 'ArticleController@delete');
+Route::post('/articles/{id}/edit', 'ArticleController@edit');
