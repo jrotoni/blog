@@ -20,6 +20,7 @@
         @if($article->updated_at != null)
         <p>Created at: {{ $article->created_at->diffForHumans() }}</p>
         <p>Updated at: {{ $article->updated_at->diffForHumans() }}</p>
+        <p>Created by: {{ $article->user->name }}</p>
         @endif
     </p>
     {{--  {{$article->id}}  --}}

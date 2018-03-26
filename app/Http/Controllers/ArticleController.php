@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Article;
+use Auth;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function showArticles() {
         // $article1 = "Article 1 from Route";
         // $article2 = "Article 2 from Route";
@@ -50,6 +56,7 @@ class ArticleController extends Controller
         $new_article->title = $request->title;
         $new_article->content = $request->content;
         // dd($new_article);
+        $new_article->user_id = Auth::user()->id;
         $new_article->save();
 
         Session::flash('create_article_success','Article successfully created');

@@ -32,3 +32,6 @@ Route::post('/articles/create', 'ArticleController@create');
 
 Route::delete('/articles/{id}/delete', 'ArticleController@delete');
 Route::post('/articles/{id}/edit', 'ArticleController@edit');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
