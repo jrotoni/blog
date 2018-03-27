@@ -17,7 +17,7 @@ Tuitt Inc
     <ul>
     @foreach($articles as $article)
         {{--  <li><a href="articles/{{$article->id}}">{{$article->title}}</a></li>  --}}
-        <li><a href={{url("/articles/$article->id")}}>{{$article->title}}</a></li>
+    <li><a href={{url("/articles/$article->id")}}>{{$article->title}}</a> by <a href={{url("/profile/$article->user_id")}}>{{$article->user->name}}</a></li>
     @endforeach
     </ul>
     

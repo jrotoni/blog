@@ -21,17 +21,38 @@
         <p>Created at: {{ $article->created_at->diffForHumans() }}</p>
         <p>Updated at: {{ $article->updated_at->diffForHumans() }}</p>
         <p>Created by: {{ $article->user->name }}</p>
+        {{--  <p>Comment: {{ $article->comments }}</p>  --}}
+        <p>Comments: </p>
+        @foreach($article->comments as $comment)
+        <p>{{$comment->comment}} by {{$comment->user->name}}</p>
+        @endforeach
         @endif
     </p>
     {{--  {{$article->id}}  --}}
-   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Edit this article</button> 
-<form method="POST" action='{{url("articles/$article->id/delete")}}'>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Edit this article</button> 
+  <form method="POST" action='{{url("articles/$article->id/delete")}}'>
 
     {{ csrf_field() }}
     {{method_field('delete')}}
 
 {{--  <a class="btn btn-danger" href='{{url("articles/$article->id/delete")}}'>Delete</a>  --}}
     <button class="btn btn-danger">Delete this article</button>
+  </form>
+
+@if(Session::has('create_comment_success'))
+        <div class="alert alert-success">
+        {{Session::get('create_comment_success')}}
+        </div>
+    @endif 
+    
+<form action='{{url("articles/$article->id/comment")}}' method="POST">
+   {{ csrf_field() }}
+  <div class="form-group">
+  <div class="col-sm-12">
+  <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+  </div>
+  <button class="btn btn-success">Add Comment</button>
+  </div>
 </form>
 
 <!-- Modal -->

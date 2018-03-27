@@ -35,3 +35,6 @@ Route::post('/articles/{id}/edit', 'ArticleController@edit');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/articles/{id}/comment', 'CommentController@add_comment');
+Route::get('/profile/{id}', 'ArticleController@showProfile');

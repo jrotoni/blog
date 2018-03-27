@@ -18,4 +18,8 @@ class Article extends Model
     function say_hello() {
         return "hello";
     }
+
+    function comments() {
+        return $this->hasMany('App\Comment');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Article;
+use App\User;
 use Auth;
 
 class ArticleController extends Controller
@@ -36,6 +37,9 @@ class ArticleController extends Controller
         // }
         $article = Article::find($id);
         // dd($article);
+        // dd($article->comments);
+        // dd($article->comments()->get());
+        // $comment = Comment::find($id);
         return view('articles.single_article', compact('article'));
     }
 
@@ -87,5 +91,12 @@ class ArticleController extends Controller
 
         return redirect()->back();
 
+    }
+
+    function showProfile($id) {
+        // echo "$id";
+        
+        $profile = User::find($id);
+        return view('users.profile', compact('profile'));
     }
 }
