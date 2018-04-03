@@ -22,4 +22,8 @@ class Article extends Model
     function comments() {
         return $this->hasMany('App\Comment');
     }
+
+    function tags() {
+        return $this->belongsToMany('App\Tag');
+    }
 }

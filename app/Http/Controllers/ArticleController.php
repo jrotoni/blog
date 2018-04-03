@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Article;
 use App\User;
+use App\Tag;
 use Auth;
 
 class ArticleController extends Controller
@@ -36,11 +37,12 @@ class ArticleController extends Controller
         //     echo "sample";
         // }
         $article = Article::find($id);
+        $tags = Tag::all();
         // dd($article);
         // dd($article->comments);
         // dd($article->comments()->get());
         // $comment = Comment::find($id);
-        return view('articles.single_article', compact('article'));
+        return view('articles.single_article', compact('article', 'tags'));
     }
 
     function createForm() {

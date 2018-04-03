@@ -55,6 +55,16 @@
   </div>
 </form>
 
+<form action='{{url("articles/$article->id/tags")}}' method="POST">
+  {{ csrf_field() }}
+  @foreach($tags as $tag)
+  <div class="checkbox">
+  <label><input type="checkbox" name="tag[]" value="{{$tag->id}}">{{$tag->name}}</label>
+  </div>
+  @endforeach
+ <button type="submit" class="btn btn-info">Add</button>
+</form>
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
