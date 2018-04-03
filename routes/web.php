@@ -32,9 +32,9 @@ Route::post('/articles/create', 'ArticleController@create');
 
 Route::delete('/articles/{id}/delete', 'ArticleController@delete');
 Route::post('/articles/{id}/edit', 'ArticleController@edit');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::post('/articles/{id}/comment', 'CommentController@add_comment');
+Route::post('articles/{id}/tags', 'TagController@addTag');
 Route::get('/profile/{id}', 'ArticleController@showProfile');
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
