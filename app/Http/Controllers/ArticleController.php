@@ -7,6 +7,7 @@ use Session;
 use App\Article;
 use App\User;
 use App\Tag;
+use App\Category;
 use Auth;
 
 class ArticleController extends Controller
@@ -46,7 +47,8 @@ class ArticleController extends Controller
     }
 
     function createForm() {
-        return view('articles.create_form');
+        $categories = Category::all();
+        return view('articles.create_form', compact('categories'));
     }
     
     function create(Request $request) {
@@ -61,6 +63,7 @@ class ArticleController extends Controller
         $new_article = new Article;
         $new_article->title = $request->title;
         $new_article->content = $request->content;
+        $new_article->category_id = $request->category;
         // dd($new_article);
         $new_article->user_id = Auth::user()->id;
         $new_article->save();
